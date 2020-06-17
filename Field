@@ -1,0 +1,14 @@
+#!/bin/bash
+g++ Field.cpp -std=c++1y -o main
+if [ $? -ne 0 ]
+then
+    echo "Compile failed!"
+    exit 1
+fi
+./main
+gnuplot -e "set xlabel 'x';
+			set ylabel 'y';
+			set zlabel 't';
+			splot 'plot.dat' with lines;
+			pause -1;";
+rm plot.dat main

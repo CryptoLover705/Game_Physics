@@ -1,0 +1,15 @@
+#!/bin/bash
+g++ Gaussian.cpp -std=c++1y -o main
+if [ $? -ne 0 ]
+then
+    echo "Compile failed!"
+    exit 1
+fi
+./main
+gnuplot -e "set xlabel 'x';
+			set ylabel 'y';
+			set zlabel 'z';
+			set view equal xyz;
+			splot 'plot.dat' with points;
+			pause -1;";
+rm plot.dat main

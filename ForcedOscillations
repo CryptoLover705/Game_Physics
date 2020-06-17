@@ -1,0 +1,13 @@
+#!/bin/bash
+g++ ForcedOscillations.cpp -std=c++1y -o main
+if [ $? -ne 0 ]
+then
+    echo "Compile failed!"
+    exit 1
+fi
+./main
+gnuplot -e "set xlabel 't';
+			set ylabel 'x';
+			plot 'plot.dat' with lines;
+			pause -1;";
+rm plot.dat main
